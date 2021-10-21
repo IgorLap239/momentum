@@ -10,7 +10,6 @@ function saveName(text){
 
 function handleSubmit(event){
   event.preventDefault();
-  console.log("input = ", greetingInput.value)
   const currentValue = greetingInput.value;
   paintGreeting(currentValue);
   saveName(currentValue);
@@ -26,7 +25,6 @@ function paintGreeting(text){
 
 function loadName(){
   const currentUser = localStorage.getItem(userLS);
-  console.log("currentUser = ", currentUser)
   if (currentUser === null){
     askForName();
   } else {
@@ -45,24 +43,22 @@ function changeGreetingText(time) {
   } else if (hours < 6 && hours >= 00) {
     greeting.textContent = "Good night ";
   }
-  console.log(time);
 }
 
 function getTime() {
-  console.log("Time")
   const time = document.querySelector(".time");
   changeGreetingText(time.datetime);
 }
 
 function init(){
-  greetingInput.addEventListener("blur", (e) => {
+  greetingInput.addEventListener("change", (e) => {
     localStorage.removeItem(userLS)
-    console.log("It work!")
     askForName();
     handleSubmit(e);
   });
   loadName();
   getTime();
+  setInterval(getTime, 1000);
 };
 
 init();
