@@ -11,6 +11,7 @@ async function getWeather(text = "Minsk") {
     const res = await fetch(url);
     const data = await res.json();
     weatherIcon.className = 'weather-icon owf';
+    weatherError.textContent = ``
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.floor(data.main.temp)}°C`;
     weatherDescription.textContent = data.weather[0].description;
