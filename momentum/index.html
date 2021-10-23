@@ -16,7 +16,18 @@
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
       </div>
-      <ul class="play-list"></ul>
+      <div class="track-name"></div>
+      <input class="progress" type="range" value="0" min="0" max="100" step="1">
+      <div class="track-time">
+        <span class="current-time"></span>
+        <span class="full-time"></span>
+      </div>
+      <div class="volume-control">
+        <button class="mute"></button>
+        <input class="volume" type="range" min=0 max=1 step=0.01 value='1'>
+      </div>
+      <ul class="play-list">
+      </ul>
     </div>
     <div class="weather">
       <input type="text" class="city" />
@@ -55,5 +66,6 @@
   <script src="src/greeting.js"></script>
   <script src="src/weather.js"></script>
   <script src="src/quote.js"></script>
+  <script src="src/player.js"></script>
 </body>
 </html>
