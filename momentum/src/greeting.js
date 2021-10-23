@@ -1,6 +1,6 @@
-const greetingContainer = document.querySelector(".greeting-container");
-const greetingInput = greetingContainer.querySelector(".name");
-const greeting = greetingContainer.querySelector(".greeting");
+const greetingContainer = document.querySelector(".greeting-container"),
+      greetingInput = greetingContainer.querySelector(".name"),
+      greeting = greetingContainer.querySelector(".greeting");
 
 const userLS = "currentUser";
 
@@ -33,15 +33,19 @@ function loadName(){
 }
 
 function changeGreetingText(time) {
+  let greetingTexts = ["Good morning,", "Good afternoon,", "Good evening,", "Good night,"];
+  if (lang == "ru") {
+    greetingTexts = ["Доброе утро,", "Добрый день,", "Добрый вечер,", "Доброй ночи,"];
+  }
   const hours = time.split(":")[0];
   if (hours >= 6 && hours < 12) {
-    greeting.textContent = "Good morning";
+    greeting.textContent = greetingTexts[0];
   } else if (hours >= 12 && hours < 18) {
-    greeting.textContent = "Good afternoon";
+    greeting.textContent = greetingTexts[1];
   } else if (hours <= 23 && hours >= 18) {
-    greeting.textContent = "Good evening";
+    greeting.textContent = greetingTexts[2];
   } else if (hours < 6 && hours >= 00) {
-    greeting.textContent = "Good night ";
+    greeting.textContent = greetingTexts[3];
   }
 }
 

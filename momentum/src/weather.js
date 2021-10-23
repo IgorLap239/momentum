@@ -3,10 +3,12 @@ const weatherIcon = document.querySelector('.weather-icon'),
       wind = document.querySelector('.wind'),
       humidity = document.querySelector('.humidity'),
       weatherInput = document.querySelector('.city'),
-      weatherError = document.querySelector('.weather-error');
+      weatherError = document.querySelector('.weather-error'),
+      langBtn = document.querySelector(".lang-button");
 
-async function getWeather(text = "Minsk") {  
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${text}&lang=en&appid=d1bd7591df1888b2d58115ebcffa92bb&units=metric`;
+async function getWeather(text = "Minsk") {
+  console.log("lang = ", lang)
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${text}&lang=${lang}&appid=d1bd7591df1888b2d58115ebcffa92bb&units=metric`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -17,6 +19,10 @@ async function getWeather(text = "Minsk") {
     weatherDescription.textContent = data.weather[0].description;
     wind.textContent = `Wind speed: ${Math.floor(data.wind.speed)} m/s`;
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    if (lang == "ru") {
+      wind.textContent = `Ветер: ${Math.floor(data.wind.speed)} м/с`;
+      humidity.textContent = `Влажность: ${data.main.humidity}%`;
+    }
     saveCity(text, data);
   } catch (e) {
     weatherError.textContent = `Error! city not found for "${text}"!`
@@ -44,12 +50,6 @@ function saveCity(text, data){
   localStorage.setItem(humidityData, humidity.textContent);
 }
 
-function handleSubmit(event){
-  if (event)
-    event.preventDefault();
-  const currentValue = weatherInput.value;
-}
-
 function loadCity(){
   const currentCity = localStorage.getItem(city);
   if (currentCity === null){
@@ -73,6 +73,9 @@ function init() {
   loadCity();
   weatherInput.addEventListener("change", (e)=> {
     handleSubmit(e);
+    getWeather(weatherInput.value);
+  });
+  langBtn.addEventListener("click", (e)=> {
     getWeather(weatherInput.value);
   });
 }

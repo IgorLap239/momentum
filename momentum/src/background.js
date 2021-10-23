@@ -76,10 +76,10 @@ function getSlidePrev() {
   setBg(urlStr)
 }
 
- function init () {
+function backgroundFunc() {
   document.querySelector(".greeting").addEventListener("DOMSubtreeModified", changeBackground());
   document.querySelector(".slide-prev").addEventListener("click", getSlidePrev);
   document.querySelector(".slide-next").addEventListener("click", getSlideNext);
- }
+}
 
-init();
+backgroundFunc()

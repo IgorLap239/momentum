@@ -1,9 +1,12 @@
 const quoteStr = document.querySelector('.quote'),
       authorStr = document.querySelector('.author'),
-      refreshQuote = document.querySelector('.change-quote');
+      refreshQuote = document.querySelector('.change-quote'),
+      lngBtn = document.querySelector(".lang-button");
 
-async function getQuote() {  
-  const url = `https://type.fit/api/quotes`;
+async function getQuote() {
+  let url = `https://type.fit/api/quotes`;
+  if (lang == "ru")
+    url = `./src/quotes.json`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -24,6 +27,7 @@ function  getRandomNum() {
 function init() {
   getQuote();
   refreshQuote.addEventListener("click", getQuote);
+  lngBtn.addEventListener("click", getQuote);
 }
 
 init();
