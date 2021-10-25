@@ -7,7 +7,6 @@ const weatherIcon = document.querySelector('.weather-icon'),
       langBtn = document.querySelector(".lang-button");
 
 async function getWeather(text = "Minsk") {
-  console.log("lang = ", lang)
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${text}&lang=${lang}&appid=d1bd7591df1888b2d58115ebcffa92bb&units=metric`;
   try {
     const res = await fetch(url);
