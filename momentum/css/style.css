@@ -10,7 +10,7 @@
 }
 
 body {
-  min-width: 480px;
+  min-width: 320px;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -314,7 +314,6 @@ li {
 
 .footer-of-footer {
   position: relative;
-  bottom: 0px;
   width: 90vw;
   display: flex;
   flex-direction: row;
@@ -463,4 +462,34 @@ input:checked + .slider:before {
     font-size: 32px;
     padding: 5px;
   }
+}
+
+
+@media (max-width: 420px) {
+.body {
+  background-repeat: repeat;
+}
+
+.header {
+  padding: 0px;
+  overflow: hidden;
+}
+
+.main {
+  padding-bottom: 0px;
+}
+
+.greeting-container, .name {
+  font-size: 22px;
+}
+
+.change-quote {
+  margin-bottom: 10px;
+  background-image: url("../assets/svg/reload.svg");
+  background-size: 20px 20px;
+}
+
+.footer {
+  padding-top: 0px;
+}
 }
