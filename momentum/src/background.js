@@ -32,7 +32,6 @@ function  getRandomNum(a=1, b=20) {
 
 function changeBackground () {
   const timeOfDay = getTimeOfDay();
-  imgNum = getRandomNum();
     if (imgNum < 10) {
       urlStr = `https://raw.githubusercontent.com/IgorLap239/stage1-tasks/assets/images/${timeOfDay}/0${imgNum}.jpg`
     } else {
@@ -119,8 +118,6 @@ function backgroundFunc() {
   changeBackground();
   switchArr.forEach(el => {
     el.addEventListener("change", (e)=> {
-      e.stopPropagation();
-      e.stopImmediatePropagation();
       switchInputs.forEach(el => {
         el.checked = false;
       })
@@ -130,6 +127,8 @@ function backgroundFunc() {
         if (!setTag.classList.contains("hidden"))
           setTag.classList.add("hidden");
         sourceNum = 0;
+        if (imgNum > 20)
+          imgNum = getRandomNum();
         changeBackground();
       } else if (target.closest(".unsplash")) {
         if (setTag.classList.contains("hidden"))
