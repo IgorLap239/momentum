@@ -7,24 +7,30 @@ const weatherIcon = document.querySelector('.weather-icon'),
       langBtn = document.querySelector(".lang-button");
 
 async function getWeather(text = "Minsk") {
+  if (lang == "en" && weatherInput.value == "Минск")
+    weatherInput.value = "Minsk";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${text}&lang=${lang}&appid=d1bd7591df1888b2d58115ebcffa92bb&units=metric`;
   try {
     const res = await fetch(url);
     const data = await res.json();
     weatherIcon.className = 'weather-icon owf';
-    weatherError.textContent = ``
+    weatherError.textContent = ``;
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.floor(data.main.temp)}°C`;
     weatherDescription.textContent = data.weather[0].description;
     wind.textContent = `Wind speed: ${Math.floor(data.wind.speed)} m/s`;
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
     if (lang == "ru") {
+      if (weatherInput.value == "Minsk") {
+        weatherInput.value = "Минск";}
       wind.textContent = `Ветер: ${Math.floor(data.wind.speed)} м/с`;
       humidity.textContent = `Влажность: ${data.main.humidity}%`;
     }
     saveCity(text, data);
   } catch (e) {
     weatherError.textContent = `Error! city not found for "${text}"!`
+    if (lang == "ru")
+      weatherError.textContent = `Нет данных для введенного города "${text}"!`;
     weatherIcon.className = 'weather-icon owf';
     temperature.textContent = ``;
     weatherDescription.textContent = "";
