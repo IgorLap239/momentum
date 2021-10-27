@@ -1,4 +1,5 @@
 const langButton = document.querySelector(".lang-button"),
+      greetInput = document.querySelector(".name"),
       setContainer = document.querySelector(".settings-block");
 var lang = "en";
 
@@ -9,11 +10,13 @@ function changeLang () {
     langButton.textContent = "ru";
     lang = "ru";
     changeSettingsLang();
+    changeGreetingInputLang();
   } else if (htmlTag.lang == "ru") {
     htmlTag.lang = "en";
     langButton.textContent = "en";
     lang = "en";
     changeSettingsLang();
+    changeGreetingInputLang();
   }
 }
 
@@ -26,6 +29,14 @@ function changeSettingsLang () {
     settingsContainer.querySelector(".lang").textContent = "Язык";
     settingsContainer.querySelector(".lang-text").textContent = "Выберите язык";
     settingsContainer.querySelector(".back").textContent = "Источник фона";
+  }
+}
+
+function changeGreetingInputLang() {
+  if (lang == "ru") {
+    greetingInput.placeholder = "[Введите имя]";
+  } else if (lang == "en"){
+    greetingInput.placeholder = "[Enter name]";
   }
 }
 
